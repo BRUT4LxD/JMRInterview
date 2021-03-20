@@ -10,10 +10,21 @@ namespace DemoImplementation
     {
         public static IEnumerable<PersonWithEmail> Flatten(IEnumerable<Person> people)
         {
+            /*
+             * Potencjalne konsekwencje:
+             * 1. Potrzeba późniejszego parsowania maila
+             * 2. Potrzeba przygotowania odbiorcy na wiele adresów email
+             * 3. Potrzeba wspóldzielenia konwencji oddzielenia elementów pośród ludzi utrzymujących kod
+             * 4. Możliwe duplikacje separatorów przy otrzymaniu maila w niedozwolonym stanie
+             *
+             * Takie mapowanie można użyć w każdym przypadku niemniej jednak trzeba pamiętać o prawidłowym przechwyceniu `FormattedEmail` u odbiorcy
+             * (zakładam, że wymogiem jest otrzymanie odpowiedzi skonstruowanej z unikatowego imienia oraz jego maila/maili)
+             */
+
             return people.Select(e => new PersonWithEmail
             {
                 SanitizedNameWithId = e.Name + e.Id,
-                FormattedEmail = string.Join("☕", e.Emails.Select(s => s.Email + "🍌" + s.EmailType))
+                FormattedEmail = string.Join("☕", e.Emails?.Select(s => s.Email + "🍌" + s.EmailType))
             });
         }
 
