@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace DemoImplementation
 {
-    public static class Excerices
+    public static class Excercises
     {
         public static IEnumerable<PersonWithEmail> Flatten(IEnumerable<Person> people)
         {
