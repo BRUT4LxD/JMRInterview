@@ -11,6 +11,11 @@ namespace DemoImplementation
     {
         private static async Task Main(string[] args)
         {
+            await Test();
+        }
+
+        public static async Task Test()
+        {
             Excerices.Flatten(new List<Person>());
 
             var hash = new ConcurrentBag<string>();
@@ -87,7 +92,7 @@ namespace DemoImplementation
 
             Excerices.MatchPersonToAccount(groups, accounts, null);
 
-            Console.WriteLine(stopwatch.ElapsedMilliseconds);
+            Console.WriteLine("Execution time: \t" + stopwatch.ElapsedMilliseconds + "ms");
         }
     }
 }
